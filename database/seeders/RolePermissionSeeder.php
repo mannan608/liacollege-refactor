@@ -1,0 +1,248 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
+
+class RolePermissionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
+
+        $permissions = [
+            'dashboard.view',
+            // User permissions
+            'user.list',
+            'user.view',
+            'user.create',
+            'user.edit',
+            'user.delete',
+            'user.impersonate',
+            'user.status.change',
+            // Role permissions
+            'role.list',
+            'role.view',
+            'role.create',
+            'role.edit',
+            'role.delete',
+            'role.manage',
+
+            // 'permission.list',
+            // 'permission.sync',
+
+            // Blog permissions
+            'blog.list',
+            'blog.view',
+            'blog.create',
+            'blog.edit',
+            'blog.delete',
+            'blog.publish',
+            'blog.manage',
+            // Event permissions
+            'event.list',
+            'event.view',
+            'event.create',
+            'event.edit',
+            'event.delete',
+            'event.manage',
+
+            // SEO permissions
+            'seo.list',
+            'seo.view',
+            'seo.create',
+            'seo.edit',
+            'seo.delete',
+            'seo.manage',
+
+            // University permissions
+            'university.list',
+            'university.create',
+            'university.view',
+            'university.status.change',
+            'university.edit',
+            'university.delete',
+            'university.manage',
+
+            // Campus permissions
+            'campus.list',
+            'campus.create',
+            'campus.view',
+            'campus.edit',
+            'campus.delete',
+
+            // Provider permissions
+            'provider.list',
+            'provider.create',
+            'provider.view',
+            'provider.edit',
+            'provider.delete',
+
+
+
+            // Course Resource permissions
+            'course.resource.create',
+            'course.resource.view',
+            'course.resource.edit',
+            'course.resource.delete',
+            'course.resource.list',
+
+
+            //contact
+            'contact.list',
+            'contact.view',
+            'contact.delete',
+             //eligibility
+            'eligibility.list',
+            'eligibility.view',
+            'eligibility.delete',
+
+            //subscriber
+            'subscriber.list',
+            'subscriber.view',
+            'subscriber.delete',
+
+            //student
+            'student.list',
+            'student.view',
+            'student.create',
+            'student.edit',
+            'student.delete',
+            'student.status.change',
+            'student.manage',
+
+            // ..............................
+
+            // training-centers
+
+            'training-centers.list',
+            'training-centers.create',
+            'training-centers.view',
+            'training-centers.edit',
+            'training-centers.delete',
+            'training-centers.status.change',
+            'training-centers.manage',
+
+            // course-categories
+            'course-categories.list',
+            'course-categories.index',
+            'course-categories.create',
+            'course-categories.show',
+            'course-categories.edit',
+            'course-categories.delete',
+            'course-categories.status.change',
+            'course-categories.manage',
+
+            // Course permissions
+            'course.list',
+            'course.create',
+            'course.view',
+            'course.edit',
+            'course.delete',
+            'course.status.change',
+            'course.manage',
+
+            // create course schedule/slot
+            'course-slot.manage',
+            'course-slot.list',
+            'course-slot.view',
+            'course-slot.create',
+            'course-slot.edit',
+            'course-slot.delete',
+            'course-slot.status.change',
+
+            'modules.manage',
+            'modules.list',
+            'modules.view',
+            'modules.create',
+            'modules.edit',
+            'modules.delete',
+            'modules.status.change',
+
+            // Quiz permissions
+            'quizzes.list',
+            'quizzes.create',
+            'quizzes.view',
+            'quizzes.edit',
+            'quizzes.delete',
+            'quizzes.status.change',
+            'quizzes.manage',
+
+            // Help & Forms
+            'help.report.list',
+            'help.report.view',
+            'help.report.edit',
+            'help.report.delete',
+            'help.complaint.list',
+            'help.complaint.view',
+            'help.complaint.edit',
+            'help.complaint.delete',
+            'help.contact.list',
+            'help.contact.view',
+            'help.contact.edit',
+            'help.contact.delete',
+
+            // Course Permission & Role Management
+            'course-permission.list',
+            'course-permission.create',
+            'course-permission.view',
+            'course-permission.edit',
+            'course-permission.delete',
+
+             // Assignment
+            'assignment.list',
+            'assignment.create',
+            'assignment.view',
+            'assignment.edit',
+            'assignment.delete',
+            'assignment.status.change',
+            'assignment.manage',
+
+            // Assignment Submission
+            'assignment-submission.list',
+            'assignment-submission.view',
+            'assignment-submission.edit',
+            'assignment-submission.delete',
+
+
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate([
+                'name' => $permission,
+                'guard_name' => config('rbac.default_guard', 'web'),
+            ]);
+        }
+
+        $superAdmin = Role::firstOrCreate([
+            'name' => config('rbac.super_admin_role'),
+            'guard_name' => config('rbac.default_guard', 'web'),
+        ]);
+
+        $adminRole = Role::firstOrCreate([
+            'name' => 'admin',
+            'guard_name' => config('rbac.default_guard', 'web'),
+        ]);
+        $defaultRole = Role::firstOrCreate([
+            'name' => 'default',
+            'guard_name' => config('rbac.default_guard', 'web'),
+        ]);
+        $studentRole = Role::firstOrCreate([
+            'name' => 'student',
+            'guard_name' => config('rbac.default_guard', 'web'),
+        ]);
+
+        $adminRole->syncPermissions($permissions);
+        $superAdmin->syncPermissions($permissions);
+        $defaultRole->syncPermissions(['dashboard.view']);
+        $studentRole->syncPermissions(['']);
+
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
+    }
+}
