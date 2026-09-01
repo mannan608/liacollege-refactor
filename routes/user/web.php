@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'landingPage'])->name('home');
 Route::get('/about', [FrontendController::class, 'aboutPage'])->name('about');
+Route::get('/students-information', [FrontendController::class, 'studentInformation'])->name('students-information');
+Route::get('/enrolment-form', [FrontendController::class, 'enrolmentForm'])->name('enrolment-form');
 Route::get('/contact', [FrontendController::class, 'contactPage'])->name('contact');
 Route::get('/qualifications', [QualificationController::class, 'courses'])
     ->name('qualifications');

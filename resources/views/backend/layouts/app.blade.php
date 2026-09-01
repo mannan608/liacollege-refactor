@@ -11,6 +11,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    
+
     <!-- Theme Store -->
     <script>
         document.addEventListener('alpine:init', () => {

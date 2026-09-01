@@ -345,4 +345,14 @@ class FrontendController extends Controller
         $states     = EligibilitySubmission::STATES;  
         return view('frontend.pages.rpl', compact('courses','industries','states','coursesByIndustry'));
     }
+
+    public function studentInformation()
+    {
+        return view('frontend.pages.students-information.index');
+    }
+
+    public function enrolmentForm()
+    {
+        return view('frontend.pages.register.register');
+    }
 }

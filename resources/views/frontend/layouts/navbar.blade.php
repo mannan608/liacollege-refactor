@@ -90,7 +90,15 @@
                             </ul>
                         </div>
 
+                        {{-- students information --}}
+                        <a href="{{ route('students-information') }}"
+                            class="relative font-normal transition-all duration-300
+                        {{ request()->routeIs('students-information') ? 'text-brand-500 font-normal after:w-full' : 'text-brand-500 hover:text-brand-500 after:w-0 hover:after:w-full' }}
+                        after:absolute after:left-0 after:-bottom-1.5
+                        after:h-0.5 after:bg-brand-500 after:transition-all after:duration-300">
 
+                            Students Information
+                        </a>
                         {{-- About --}}
                         <a href="{{ route('about') }}"
                             class="relative font-normal transition-all duration-300
@@ -135,7 +143,7 @@
 
                         <button type="button" @click="showModal = true"
                             class="text-sm lg:text-base bg-brand-600 text-white px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg font-normal hover:bg-brand-600 transition">
-                           Admission Enquiry
+                            Admission Enquiry
                         </button>
 
 
@@ -162,7 +170,7 @@
                                 
                             </a>
                         @endguest --}}
-                       
+
 
                     </div>
 
