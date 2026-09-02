@@ -142,7 +142,7 @@
                     <div class="flex items-center gap-4 lg:gap-6">
 
                         <button type="button" @click="showModal = true"
-                            class="text-sm lg:text-base bg-brand-600 text-white px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg font-normal hover:bg-brand-600 transition">
+                            class="hidden md:block text-sm lg:text-base  text-brand-500 font-normal transition">
                             Admission Enquiry
                         </button>
 
@@ -157,19 +157,13 @@
                                     class="w-full h-full object-cover" />
                             </a>
                         @endauth
-                        {{-- @guest
-                            <a href="{{ route('login') }}" aria-label="Sign in"
-                                class="group relative flex items-center justify-center w-10 h-10 rounded-full bg-white border hover:border-brand-500 shadow-sm hover:shadow-md transition-all duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-gray-500 group-hover:text-brand-600 transition-colors duration-300">
-                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
+                        @guest
+                            <a href="{{ route('enrolment-form') }}"
+                                class=" flex items-center justify-center transition-all duration-300 font-bold py-2 px-4 lg:px-6 lg:py-2.5 rounded-lg text-sm lg:text-base bg-brand-600 text-white hover:bg-brand-600">
+                                Enrol Now
                                 
                             </a>
-                        @endguest --}}
+                        @endguest
 
 
                     </div>
@@ -192,6 +186,11 @@
 
                     <a href="{{ route('contact') }}"
                         class="{{ request()->routeIs('contact') ? 'text-brand-500 font-medium' : 'text-brand-500' }}">Contact Us</a>
+
+                        <button type="button" @click="showModal = true"
+                            class="text-sm lg:text-base bg-brand-600 text-white px-4 py-2 lg:px-6 lg:py-2.5 rounded-lg font-normal hover:bg-brand-600 transition">
+                            Admission Enquiry
+                        </button>
 
                 </div>
             </div>

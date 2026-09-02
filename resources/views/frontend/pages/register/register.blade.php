@@ -3,7 +3,7 @@
          <div class="max-w-6xl mx-auto px-0 sm:px-6 lg:px-8">
              {{-- ========================================================= HERO ========================================================== --}}
              <section
-                 class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900">
+                 class="relative overflow-hidden -mt-4 sm:mt-0 sm:rounded-3xl bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900">
                  <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/5"></div>
                  <div class="absolute -left-20 -bottom-32 h-80 w-80 rounded-full bg-brand-400/10"></div>
                  <div class="relative px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
