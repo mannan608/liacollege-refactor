@@ -2,9 +2,7 @@
 
 @section('content')
 <main class="min-h-screen bg-slate-50/70">
-
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
-
         {{-- Hero Section --}}
         <header class="mx-auto max-w-4xl pb-8 text-center lg:pb-10">           
 
@@ -395,9 +393,6 @@
             </div>
         </div>
     </section>
-
-
-
 </main>
 
 @endsection
