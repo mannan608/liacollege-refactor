@@ -30,7 +30,7 @@
 
                 <div class="flex flex-col sm:flex-row gap-4">
 
-                    <a href="{{ route('courses') }}"
+                    <a href=""
                         class="inline-flex items-center justify-center
                         bg-brand-600 text-white
                         px-5 py-3 lg:px-6 lg:py-3
@@ -651,9 +651,5 @@
 
         </div>
     </section>
-    <section class="pt-8 md:pt-12 lg:pt-14">
-        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-            <x-frontend.cta />
-        </div>
-    </section>
+   
 @endsection

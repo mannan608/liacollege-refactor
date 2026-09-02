@@ -6,11 +6,7 @@
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
 
         {{-- Hero Section --}}
-        <header class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white px-6 py-10 shadow-sm sm:px-10 sm:py-12 lg:px-14">
-
-            {{-- Decorative background --}}
-            <div class="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand-50 blur-3xl"></div>
-            <div class="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-sky-50 blur-3xl"></div>
+        <header class="mx-auto max-w-4xl pb-8 text-center lg:pb-10">           
 
             <div class="relative mx-auto max-w-3xl text-center">
 
@@ -75,8 +71,6 @@
 
             </div>
         </header>
-
-
         {{-- Documents Section --}}
         <section class="mt-8 sm:mt-10">
 
@@ -360,8 +354,6 @@
             </div>
 
         </section>
-
-
         {{-- Bottom Information Banner --}}
         <section class="mt-8 overflow-hidden rounded-2xl border border-brand-100 bg-brand-50/60 p-5 sm:p-6">
 
@@ -388,8 +380,33 @@
             </div>
 
         </section>
-
     </div>
+     @include('frontend.pages.common.cta')
+
+     <!-- HISTORY / QUALITY TRAINING -->
+<section class="relative overflow-hidden bg-white py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            <div class="relative">
+                <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-brand-200 to-emerald-200 opacity-50 blur-xl"></div>
+                <div class="absolute inset-0 tranbrand-x-4 tranbrand-y-4 rounded-[1.5rem] bg-brand-100"></div>
+                <img src="{{ asset('frontend/images/banner/embark.png') }}" alt="Quality Training" class="relative rounded-[1.5rem] w-full h-auto object-cover shadow-2xl">
+            </div>
+            <div class="space-y-6">
+                <p class="text-sm font-semibold uppercase tracking-widest text-brand-600">Our Story</p>
+                <h2 class="text-3xl font-extrabold text-brand-900 sm:text-4xl">Quality Training Provider</h2>
+                <p class="text-lg leading-relaxed text-brand-600">
+                    For over a decade, Leadership Institute Australia has been dedicated to empowering individuals and organisations through high-quality vocational education and training. Our name reflects our commitment to developing strong leaders, skilled professionals, and capable community contributors.
+                </p>
+                <p class="text-lg leading-relaxed text-brand-600">
+                    Leadership Institute Australia is recognised as a trusted training provider, built on the expertise, passion, and continuous professional development of our training team. We are committed to maintaining the highest standards in education to ensure our students graduate with the knowledge, skills, and confidence needed to succeed.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
 
 </main>
 

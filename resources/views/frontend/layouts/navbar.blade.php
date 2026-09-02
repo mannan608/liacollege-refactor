@@ -106,7 +106,7 @@
                         after:absolute after:left-0 after:-bottom-1.5
                         after:h-0.5 after:bg-brand-500 after:transition-all after:duration-300">
 
-                            About
+                            About Us
                         </a>
 
                         {{-- Contact --}}
@@ -116,7 +116,7 @@
                             after:absolute after:left-0 after:-bottom-1.5
                             after:h-0.5 after:bg-brand-500 after:transition-all after:duration-300">
 
-                            Contact
+                            Contact Us
                         </a>
 
                         {{-- <a href="{{ route('blogs') }}"
@@ -188,10 +188,10 @@
                         class="{{ request()->routeIs('courses') ? 'text-brand-500 font-medium' : 'text-brand-500' }}">Our
                         Qualifications</a>
                     <a href="{{ route('about') }}"
-                        class="{{ request()->routeIs('about') ? 'text-brand-500 font-medium' : 'text-brand-500' }}">About</a>
+                        class="{{ request()->routeIs('about') ? 'text-brand-500 font-medium' : 'text-brand-500' }}">About Us</a>
 
                     <a href="{{ route('contact') }}"
-                        class="{{ request()->routeIs('contact') ? 'text-brand-500 font-medium' : 'text-brand-500' }}">Contact</a>
+                        class="{{ request()->routeIs('contact') ? 'text-brand-500 font-medium' : 'text-brand-500' }}">Contact Us</a>
 
                 </div>
             </div>

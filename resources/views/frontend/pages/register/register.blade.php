@@ -1,6 +1,6 @@
  @extends('frontend.layouts.app') @section('content')
      <main x-data="enrolmentWizard()" x-init="init()" class="min-h-screen bg-slate-50 py-0 md:py-6">
-         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div class="max-w-6xl mx-auto px-0 sm:px-6 lg:px-8">
              {{-- ========================================================= HERO ========================================================== --}}
              <section
                  class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900">
@@ -122,7 +122,7 @@
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="grid gap-4 p-5 sm:grid-cols-2 sm:p-6">
+                                 <div class="grid gap-5 p-5 sm:grid-cols-2 sm:p-6">
                                      <div class="rounded-2xl border border-brand-100 bg-white p-5">
                                          <div class="flex items-start gap-4">
                                              <div
@@ -164,7 +164,7 @@
                                          <p class="text-xs text-slate-500"> Here's what happens after you apply. </p>
                                      </div>
                                  </div>
-                                 <div class="grid gap-4 md:grid-cols-2">
+                                 <div class="grid gap-5 md:grid-cols-2">
                                      <div class="rounded-2xl border border-slate-200 bg-white p-5">
                                          <div class="flex gap-4"> <span
                                                  class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-700 text-xs font-bold text-white">
@@ -352,16 +352,21 @@
                                              </div>
                                              <div> <label class="mb-3 block text-xs font-bold text-slate-600"> Gender
                                                  </label>
-                                                 <div class="grid grid-cols-3 gap-2"> <label
-                                                         class="cursor-pointer rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-25">
-                                                         <input type="radio" name="gender" value="Male"
-                                                             class="sr-only"> Male </label> <label
-                                                         class="cursor-pointer rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-25">
-                                                         <input type="radio" name="gender" value="Female"
-                                                             class="sr-only"> Female </label> <label
-                                                         class="cursor-pointer rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-25">
-                                                         <input type="radio" name="gender" value="Other"
-                                                             class="sr-only"> Other </label> </div>
+                                                 <div class="grid grid-cols-3 gap-4">
+
+                                                     <label
+                                                         class="cursor-pointer flex items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-25">
+                                                         <input type="radio" name="gender" value="Male"> Male
+                                                     </label>
+                                                     <label
+                                                         class="cursor-pointer flex items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-25">
+                                                         <input type="radio" name="gender" value="Female"> Female
+                                                     </label>
+                                                     <label
+                                                         class="cursor-pointer flex items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-25">
+                                                         <input type="radio" name="gender" value="Other"> Other
+                                                     </label>
+                                                 </div>
                                              </div>
                                          </div>
                                      </div> {{-- Residential Address --}} <div
@@ -446,7 +451,7 @@
                                              <p class="mt-1 text-xs text-slate-500"> Select Yes only if your postal address
                                                  is different from your residential address. </p>
                                          </div>
-                                         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2"> <label
+                                         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2"> <label
                                                  class="cursor-pointer rounded-2xl border p-4 transition-all"
                                                  :class="postalAddress === 'same' ?
                                                      'border-brand-400 bg-brand-25 ring-2 ring-brand-100' :
@@ -502,26 +507,29 @@
                                              </div>
                                              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Unit or
-                                                         flat number </label> <input type="text" name="postal_unit" placeholder="Unit or flat number"
+                                                         flat number </label> <input type="text" name="postal_unit"
+                                                         placeholder="Unit or flat number"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Street
-                                                         Number </label> <input type="text" name="postal_street_number" placeholder="Street number"
+                                                         Number </label> <input type="text" name="postal_street_number"
+                                                         placeholder="Street number"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div class="sm:col-span-2"> <label
                                                          class="mb-2 block text-xs font-bold text-slate-600"> Street Name
-                                                     </label> <input type="text" name="postal_street_name" placeholder="Street name"
+                                                     </label> <input type="text" name="postal_street_name"
+                                                         placeholder="Street name"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Suburb,
                                                          locality or town </label> <input type="text"
-                                                         name="postal_suburb"
-                                                         placeholder="Suburb, locality or town"
+                                                         name="postal_suburb" placeholder="Suburb, locality or town"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Postcode
-                                                     </label> <input type="text" name="postal_postcode" placeholder="Postcode"
+                                                     </label> <input type="text" name="postal_postcode"
+                                                         placeholder="Postcode"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Country
@@ -565,7 +573,7 @@
                                  <div class="space-y-5"> {{-- Country Born --}} <div
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> In which country were you born? </p>
-                                         <div class="mt-4 grid gap-3 sm:grid-cols-2"> <label
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2"> <label
                                                  class="cursor-pointer rounded-xl border p-4 transition"
                                                  :class="bornCountry === 'Australia' ? 'border-brand-400 bg-brand-25' :
                                                      'border-slate-200 hover:border-brand-200'">
@@ -592,7 +600,7 @@
                                                  class="mb-2 block text-xs font-bold text-slate-600"> Country of birth
                                              </label> <input type="text" name="other_birth_country"
                                                  placeholder="Enter your country of birth"
-                                                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
+                                                 class="w-full placeholder:text-slate-400 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                          </div>
                                      </div> {{-- Language --}} <div
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
@@ -600,7 +608,7 @@
                                              English at home? </p>
                                          <p class="mt-1 text-xs leading-5 text-slate-500"> If more than one language,
                                              indicate the one that is spoken most often. </p>
-                                         <div class="mt-4 grid gap-3 sm:grid-cols-2"> <label
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2"> <label
                                                  class="cursor-pointer rounded-xl border p-4 transition"
                                                  :class="homeLanguage === 'english' ? 'border-brand-400 bg-brand-25' :
                                                      'border-slate-200 hover:border-brand-200'">
@@ -624,14 +632,13 @@
                                                  class="mb-2 block text-xs font-bold text-slate-600"> Language spoken most
                                                  often </label> <input type="text" name="other_language"
                                                  placeholder="Enter language"
-                                                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
+                                                 class="w-full placeholder:text-slate-400 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                          </div>
                                      </div> {{-- Indigenous --}} <div
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> Are you of Aboriginal or Torres
-                                             Strait
-                                             Islander origin? </p>
-                                         <div class="mt-4 grid gap-3 sm:grid-cols-2"> <template
+                                             Strait Islander origin? </p>
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2"> <template
                                                  x-for="option in indigenousOptions" :key="option"> <label
                                                      class="cursor-pointer rounded-xl border p-4 transition"
                                                      :class="indigenous === option ? 'border-brand-400 bg-brand-25' :
@@ -645,24 +652,25 @@
                                                              <span x-show="indigenous === option"
                                                                  class="h-2 w-2 rounded-full bg-white"></span> </span>
                                                          <span class="text-sm font-medium text-slate-700"
-                                                             x-text="option"></span> </div>
+                                                             x-text="option"></span>
+                                                     </div>
                                                  </label> </template> </div>
                                      </div> {{-- Disability --}} <div
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> Do you consider yourself to have a
                                              disability, impairment or long-term condition? </p>
-                                         <div class="mt-4 grid gap-3 sm:grid-cols-2"> <label
-                                                 class="cursor-pointer rounded-xl border p-4 transition"
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2">
+                                             <label class="cursor-pointer rounded-xl border p-4 transition"
                                                  :class="disability === 'No' ? 'border-brand-400 bg-brand-25' :
                                                      'border-slate-200 hover:border-brand-200'">
                                                  <input type="radio" name="disability" value="No"
-                                                     x-model="disability" class="sr-only"> <span
+                                                     x-model="disability" > <span
                                                      class="text-sm font-semibold text-slate-700"> No </span> </label>
                                              <label class="cursor-pointer rounded-xl border p-4 transition"
                                                  :class="disability === 'Yes' ? 'border-brand-400 bg-brand-25' :
                                                      'border-slate-200 hover:border-brand-200'">
                                                  <input type="radio" name="disability" value="Yes"
-                                                     x-model="disability" class="sr-only"> <span
+                                                     x-model="disability" > <span
                                                      class="text-sm font-semibold text-slate-700"> Yes </span> </label>
                                          </div>
                                      </div>
@@ -683,7 +691,7 @@
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> What is your highest completed school
                                              level? </p>
-                                         <div class="mt-4 grid gap-2 sm:grid-cols-2"> @php $levels = [ 'Year 12 or equivalent', 'Year 11 or equivalent', 'Year 10 or equivalent', 'Year 9 or equivalent', 'Year 8 or below', 'Never attended school', 'Never completed any primary or secondary level education', 'Not specified', ]; @endphp @foreach ($levels as $index => $level)
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2"> @php $levels = [ 'Year 12 or equivalent', 'Year 11 or equivalent', 'Year 10 or equivalent', 'Year 9 or equivalent', 'Year 8 or below', 'Never attended school', 'Never completed any primary or secondary level education', 'Not specified', ]; @endphp @foreach ($levels as $index => $level)
                                                  <label
                                                      class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                      <input type="radio" name="school_level"
@@ -695,9 +703,8 @@
                                      </div> {{-- Secondary Enrollment --}} <div
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> Are you still enrolled in secondary
-                                             or
-                                             senior secondary education? </p>
-                                         <div class="mt-4 grid gap-3 sm:grid-cols-2"> <label
+                                             or senior secondary education? </p>
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2"> <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-4 hover:border-brand-200 hover:bg-brand-25">
                                                  <input type="radio" name="enrolled_secondary" value="No" checked
                                                      class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
@@ -729,7 +736,7 @@
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> Do you have post-secondary
                                              qualifications? </p>
-                                         <div class="mt-4 grid gap-3 sm:grid-cols-2"> <label
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2"> <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-4 hover:border-brand-200 hover:bg-brand-25">
                                                  <input type="radio" name="post_secondary" value="No" checked
                                                      class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
@@ -744,7 +751,7 @@
                                          class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
                                          <p class="text-sm font-bold text-slate-900"> Select the HIGHEST level of
                                              qualification completed: </p>
-                                         <div class="mt-4 grid gap-2 sm:grid-cols-2"> @php $qualifications = [ 'Bachelor Degree or Higher Degree', 'Advanced Diploma or Associate Degree', 'Diploma (or Associate Diploma)', 'Certificate IV (or advanced certificate/technician)', 'Certificate III (or trade certificate)', 'Certificate II', 'Certificate I', 'Certificates other than the above', ]; @endphp @foreach ($qualifications as $index => $qualification)
+                                         <div class="mt-4 grid gap-5 sm:grid-cols-2"> @php $qualifications = [ 'Bachelor Degree or Higher Degree', 'Advanced Diploma or Associate Degree', 'Diploma (or Associate Diploma)', 'Certificate IV (or advanced certificate/technician)', 'Certificate III (or trade certificate)', 'Certificate II', 'Certificate I', 'Certificates other than the above', ]; @endphp @foreach ($qualifications as $index => $qualification)
                                                  <label
                                                      class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                      <input type="radio" name="qualification_level"
@@ -768,7 +775,7 @@
                                      </div>
                                  </div>
                                  <div class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-                                     <div class="grid gap-2 sm:grid-cols-2"> @php $statuses = [ 'Full-time employee', 'Part-time employee', 'Self-employed - not employing others', 'Employer', 'Employed - unpaid worker in family business', 'Unemployed - seeking full-time work', 'Unemployed - seeking part-time work', 'Not employed - not seeking employment', ]; @endphp @foreach ($statuses as $index => $status)
+                                     <div class="grid gap-5 sm:grid-cols-2"> @php $statuses = [ 'Full-time employee', 'Part-time employee', 'Self-employed - not employing others', 'Employer', 'Employed - unpaid worker in family business', 'Unemployed - seeking full-time work', 'Unemployed - seeking part-time work', 'Not employed - not seeking employment', ]; @endphp @foreach ($statuses as $index => $status)
                                              <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                  <input type="radio" name="employment_status"
@@ -791,7 +798,7 @@
                                      </div>
                                  </div>
                                  <div class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-                                     <div class="grid gap-2 sm:grid-cols-2"> @php $reasons = [ 'To get a job', 'To develop my existing business', 'To start my own business', 'To try for a different career', 'To get a better job or promotion', 'It was a requirement of my job', 'I wanted extra skills for my job', 'To get into another course of study', 'For personal interest or self-development', 'To get skills for community/voluntary work', 'Other reasons', ]; @endphp @foreach ($reasons as $index => $reason)
+                                     <div class="grid gap-5 sm:grid-cols-2"> @php $reasons = [ 'To get a job', 'To develop my existing business', 'To start my own business', 'To try for a different career', 'To get a better job or promotion', 'It was a requirement of my job', 'I wanted extra skills for my job', 'To get into another course of study', 'For personal interest or self-development', 'To get skills for community/voluntary work', 'Other reasons', ]; @endphp @foreach ($reasons as $index => $reason)
                                              <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                  <input type="radio" name="study_reason" value="{{ $reason }}"
@@ -828,7 +835,7 @@
                                              your course fees. </p>
                                      </div>
                                  </div>
-                                 <div class="grid gap-4 sm:grid-cols-2"> <label
+                                 <div class="grid gap-5 sm:grid-cols-2"> <label
                                          class="cursor-pointer rounded-2xl border p-5 transition-all"
                                          :class="feePayer === 'self' ?
                                              'border-brand-400 bg-brand-25 ring-2 ring-brand-100' :
@@ -960,8 +967,8 @@
                      </form>
                  </div>
              </section>
-         </div> 
-         {{-- ============================================================= SUBMISSION SUCCESS MODAL ============================================================== --}} 
+         </div>
+         {{-- ============================================================= SUBMISSION SUCCESS MODAL ============================================================== --}}
          <div x-show="submitted" x-transition.opacity
              class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 px-4 backdrop-blur-sm"
              style="display:none;">
