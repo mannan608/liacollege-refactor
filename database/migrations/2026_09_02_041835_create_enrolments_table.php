@@ -20,12 +20,15 @@ return new class extends Migration
             $table->string('application_number', 30)->unique();
 
             $table->enum('status', [
+                'draft',
                 'pending',
                 'under_review',
                 'approved',
                 'rejected',
                 'cancelled',
-            ])->default('pending')->index();
+            ])->default('draft')->index();
+
+            $table->unsignedTinyInteger('current_step')->default(1);
 
             /*
             |--------------------------------------------------------------------------
@@ -44,20 +47,20 @@ return new class extends Migration
             */
             $table->string('prefix', 20)->nullable();
 
-            $table->string('first_name');
+            $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
-            $table->string('family_name');
+            $table->string('family_name')->nullable();
 
-            $table->string('full_legal_name');
+            $table->string('full_legal_name')->nullable();
 
             $table->string('preferred_name')->nullable();
 
-            $table->string('email')->index();
-            $table->string('phone')->index();
+            $table->string('email')->nullable()->index();
+            $table->string('phone')->nullable()->index();
 
-            $table->date('date_of_birth');
+            $table->date('date_of_birth')->nullable();
 
-            $table->string('gender', 20);
+            $table->string('gender', 20)->nullable();
 
             /*
             |--------------------------------------------------------------------------
@@ -67,12 +70,12 @@ return new class extends Migration
             $table->string('building_name')->nullable();
             $table->string('unit_number')->nullable();
             $table->string('street_number')->nullable();
-            $table->string('street_name');
-            $table->string('suburb');
-            $table->string('postcode', 20);
+            $table->string('street_name')->nullable();
+            $table->string('suburb')->nullable();
+            $table->string('postcode', 20)->nullable();
 
-            $table->string('country');
-            $table->string('state');
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
 
             /*
             |--------------------------------------------------------------------------

@@ -14,6 +14,7 @@ class Enrolment extends Model
 
         'application_number',
         'status',
+        'current_step',
 
         // Step 1
         'declaration_1',
@@ -87,6 +88,7 @@ class Enrolment extends Model
 
     protected $casts = [
         'date_of_birth' => 'date',
+        'current_step' => 'integer',
 
         'declaration_1' => 'boolean',
         'declaration_2' => 'boolean',
@@ -115,6 +117,11 @@ class Enrolment extends Model
     public function scopePending($query)
     {
         return $query->where('status', 'pending');
+    }
+
+    public function scopeDraft($query)
+    {
+        return $query->where('status', 'draft');
     }
 
     public function scopeApproved($query)

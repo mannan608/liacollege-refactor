@@ -102,8 +102,11 @@
                              </template> </div>
                      </div>
                      {{-- ================================================= FORM ================================================== --}}
-                     <form id="enrolmentForm" @submit.prevent="submitApplication"
+                     <form id="enrolmentForm" @submit.prevent="saveCurrentStep"
                          class="px-5 py-7 sm:px-8 sm:py-10 lg:px-12">
+                         <div x-show="errors.general && errors.general.length" x-cloak
+                             class="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
+                             x-text="errors.general ? errors.general[0] : ''"></div>
                          {{-- ================================================= STEP 1 ================================================== --}}
                          <div x-show="currentStep === 1" x-transition.opacity.duration.300ms class="space-y-8">
                              {{-- Before You Start --}}
@@ -303,7 +306,7 @@
                                                  </select> </div>
                                              <div> <label class="mb-2 block text-xs font-bold text-slate-600"> First given
                                                      name </label> <input type="text" name="first_name"
-                                                     value="Md Abdul" placeholder="First given name"
+                                                     placeholder="First given name"
                                                      class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                              </div>
                                              <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Middle name
@@ -312,7 +315,7 @@
                                                      class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                              </div>
                                              <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Family name
-                                                 </label> <input type="text" name="family_name" value="rok"
+                                                 </label> <input type="text" name="family_name"
                                                      placeholder="Family name"
                                                      class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
                                              </div>
@@ -347,7 +350,7 @@
                                              </div>
                                              <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Date of
                                                      Birth
-                                                 </label> <input type="date" name="date_of_birth" value="2026-01-09"
+                                                 </label> <input type="date" name="date_of_birth"
                                                      class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                              </div>
                                              <div> <label class="mb-3 block text-xs font-bold text-slate-600"> Gender
@@ -385,7 +388,7 @@
                                          <div class="space-y-5">
                                              <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Building or
                                                      Property Name </label> <input type="text" name="building_name"
-                                                     value="mannan" placeholder="Building or property name"
+                                                     placeholder="Building or property name"
                                                      class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                              </div>
                                              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -396,23 +399,23 @@
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Street
                                                          Number </label> <input type="text" name="street_number"
-                                                         value="120" placeholder="Street number"
+                                                         placeholder="Street number"
                                                          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                              </div>
                                              <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Street
                                                          Name </label> <input type="text" name="street_name"
-                                                         value="raf" placeholder="Street name"
+                                                         placeholder="Street name"
                                                          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Suburb,
                                                          Locality or Town </label> <input type="text" name="suburb"
-                                                         value="fff" placeholder="Suburb / locality / town"
+                                                         placeholder="Suburb / locality / town"
                                                          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                                  </div>
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Postcode
-                                                     </label> <input type="text" name="postcode" value="1207"
+                                                     </label> <input type="text" name="postcode"
                                                          placeholder="Postcode"
                                                          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
                                                  </div>
@@ -421,6 +424,7 @@
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Country
                                                      </label> <select name="country"
                                                          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
+                                                         <option value="">Select country</option>
                                                          <option>Austria</option>
                                                          <option>Australia</option>
                                                          <option>Bangladesh</option>
@@ -432,6 +436,7 @@
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600">
                                                          State/Territory </label> <select name="state"
                                                          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100">
+                                                         <option value="">Select state/territory</option>
                                                          <option>Victoria</option>
                                                          <option>New South Wales</option>
                                                          <option>Queensland</option>
@@ -535,6 +540,7 @@
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600"> Country
                                                      </label> <select name="postal_country"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
+                                                         <option value="">Select country</option>
                                                          <option>Australia</option>
                                                          <option>Austria</option>
                                                          <option>Bangladesh</option>
@@ -545,6 +551,7 @@
                                                  <div> <label class="mb-2 block text-xs font-bold text-slate-600">
                                                          State/Territory </label> <select name="postal_state"
                                                          class=" placeholder:text-slate-400 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-400 focus:ring-4 focus:ring-brand-100">
+                                                         <option value="">Select state/territory</option>
                                                          <option>Victoria</option>
                                                          <option>New South Wales</option>
                                                          <option>Queensland</option>
@@ -695,7 +702,7 @@
                                                  <label
                                                      class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                      <input type="radio" name="school_level"
-                                                         value="{{ $level }}" @checked($index === 0)
+                                                         value="{{ $level }}"
                                                          class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
                                                      <span>{{ $level }}</span> </label>
                                              @endforeach
@@ -706,7 +713,7 @@
                                              or senior secondary education? </p>
                                          <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2"> <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-4 hover:border-brand-200 hover:bg-brand-25">
-                                                 <input type="radio" name="enrolled_secondary" value="No" checked
+                                                 <input type="radio" name="enrolled_secondary" value="No"
                                                      class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
                                                  <span class="text-sm font-semibold text-slate-700"> No </span> </label>
                                              <label
@@ -738,7 +745,7 @@
                                              qualifications? </p>
                                          <div class="mt-4 grid gap-5 sm:grid-cols-2mt-4 grid gap-5 sm:grid-cols-2"> <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-4 hover:border-brand-200 hover:bg-brand-25">
-                                                 <input type="radio" name="post_secondary" value="No" checked
+                                                 <input type="radio" name="post_secondary" value="No"
                                                      class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
                                                  <span class="text-sm font-semibold text-slate-700"> No </span> </label>
                                              <label
@@ -755,7 +762,7 @@
                                                  <label
                                                      class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                      <input type="radio" name="qualification_level"
-                                                         value="{{ $qualification }}" @checked($index === 1)
+                                                         value="{{ $qualification }}"
                                                          class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
                                                      <span>{{ $qualification }}</span> </label>
                                              @endforeach
@@ -779,7 +786,7 @@
                                              <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                  <input type="radio" name="employment_status"
-                                                     value="{{ $status }}" @checked($index === 0)
+                                                     value="{{ $status }}"
                                                      class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
                                                  <span>{{ $status }}</span> </label>
                                          @endforeach
@@ -802,7 +809,6 @@
                                              <label
                                                  class="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 p-3.5 text-sm text-slate-700 transition hover:border-brand-200 hover:bg-brand-25">
                                                  <input type="radio" name="study_reason" value="{{ $reason }}"
-                                                     @checked($index === 0)
                                                      class="h-4 w-4 border-slate-300 text-brand-700 focus:ring-brand-600">
                                                  <span>{{ $reason }}</span> </label>
                                          @endforeach
@@ -956,7 +962,7 @@
                                  class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 sm:w-auto">
                                  <i class="fa-solid fa-arrow-left"></i> Previous </button>
                              <div class="flex w-full sm:ml-auto sm:w-auto"> {{-- NEXT --}} <button type="button"
-                                     x-show="currentStep < totalSteps" x-transition @click="nextStep()"
+                                     x-show="currentStep < totalSteps" x-transition @click="saveCurrentStep()"
                                      class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-800 px-7 py-3 text-sm font-bold text-white shadow-lg shadow-brand-800/20 transition hover:bg-brand-900 focus:outline-none focus:ring-4 focus:ring-brand-200 sm:w-auto">
                                      Continue <i class="fa-solid fa-arrow-right"></i> </button> {{-- SUBMIT - ONLY FINAL STEP --}}
                                  <button type="submit" x-show="currentStep === totalSteps" x-transition
@@ -994,12 +1000,23 @@
                  currentStep: 1,
                  totalSteps: 5,
                  submitted: false,
-                 postalAddress: 'same',
-                 bornCountry: 'Australia',
-                 homeLanguage: 'english',
-                 indigenous: 'No',
-                 disability: 'No',
-                 feePayer: 'self',
+                 loading: false,
+                 applicationId: null,
+                 serverDraft: @json($enrolment ? $enrolment->toArray() : null),
+                 errors: {},
+                 storageKey: 'lia_college_enrolment_draft',
+                 postalAddress: null,
+                 bornCountry: null,
+                 homeLanguage: null,
+                 indigenous: null,
+                 disability: null,
+                 feePayer: null,
+                 indigenousOptions: [
+                     'No',
+                     'Yes, Aboriginal',
+                     'Yes, Torres Strait Islander',
+                     'Yes, Aboriginal AND Torres Strait Islander',
+                 ],
                  steps: [{
                      id: 1,
                      title: 'Getting Started',
@@ -1034,20 +1051,33 @@
                      text: 'I understand that Bard College courses may be delivered in part or entirely online and this requires considerable motivation and self-discipline. It also requires a basic level of digital literacy skills.',
                      label: 'Online Learning'
                  }],
-                 indigenousOptions: ['No', 'Yes, Aboriginal', 'Yes, Torres Strait Islander',
-                     'Yes, Aboriginal AND Torres Strait Islander'
-                 ],
                  get progress() {
                      return Math.round((this.currentStep / this.totalSteps) * 100);
                  },
                  init() {
-                     this.currentStep = 1;
+                     this.$nextTick(() => this.restoreDraft());
                  },
-                 nextStep() {
-                     if (this.currentStep < this.totalSteps) {
-                         this.currentStep++;
-                         this.scrollToForm();
+                 getForm() {
+                     return document.getElementById('enrolmentForm');
+                 },
+                 escapeSelector(value) {
+                     if (window.CSS && typeof window.CSS.escape === 'function') {
+                         return window.CSS.escape(value);
                      }
+
+                     return String(value).replace(/["\\]/g, '\\$&');
+                 },
+                 scrollToForm() {
+                     this.$nextTick(() => {
+                         const form = this.getForm();
+                         if (!form) return;
+
+                         const top = form.getBoundingClientRect().top + window.scrollY - 120;
+                         window.scrollTo({
+                             top: Math.max(0, top),
+                             behavior: 'smooth'
+                         });
+                     });
                  },
                  previousStep() {
                      if (this.currentStep > 1) {
@@ -1056,26 +1086,244 @@
                      }
                  },
                  goToStep(step) {
-                     if (step >= 1 && step <= this.totalSteps) {
+                     if (step >= 1 && step <= this.currentStep) {
                          this.currentStep = step;
                          this.scrollToForm();
                      }
                  },
-                 scrollToForm() {
-                     this.$nextTick(() => {
-                         const form = document.getElementById('enrolmentForm');
-                         if (!form) return;
-                         const top = form.getBoundingClientRect().top + window.scrollY - 120;
-                         window.scrollTo({
-                             top: Math.max(0, top),
-                             behavior: 'smooth'
-                         });
+                 clearRenderedErrors() {
+                     const form = this.getForm();
+                     if (!form) return;
+
+                     form.querySelectorAll('.js-enrolment-error').forEach((node) => node.remove());
+                 },
+                 renderErrors(errors) {
+                     const form = this.getForm();
+                     if (!form) return;
+
+                     this.clearRenderedErrors();
+
+                     Object.entries(errors || {}).forEach(([field, messages]) => {
+                         if (field === 'general') {
+                             return;
+                         }
+
+                         const nodes = form.querySelectorAll(`[name="${this.escapeSelector(field)}"]`);
+
+                         if (!nodes.length) {
+                             return;
+                         }
+
+                         const anchor = nodes[nodes.length - 1].closest('label') || nodes[nodes.length - 1];
+                         const message = Array.isArray(messages) ? messages[0] : String(messages);
+                         const error = document.createElement('p');
+
+                         error.className = 'js-enrolment-error mt-2 text-xs font-semibold text-red-600';
+                         error.textContent = message;
+
+                         anchor.insertAdjacentElement('afterend', error);
                      });
                  },
-                 submitApplication() {
-                     /* * No validation as requested. * * Replace this section later with: * * this.$refs.form.submit() * * or AJAX / fetch / Laravel submission. */
-                     this.submitted = true;
-                 }
+                 saveDraftToStorage(formData) {
+                     try {
+                         const values = {};
+
+                         for (const [key, value] of formData.entries()) {
+                             if (key === '_token') {
+                                 continue;
+                             }
+
+                             values[key] = value;
+                         }
+
+                         localStorage.setItem(this.storageKey, JSON.stringify({
+                             applicationId: this.applicationId,
+                             currentStep: this.currentStep,
+                             values: values,
+                         }));
+                         this.updateApplicationUrl();
+                     } catch (error) {
+                         // Ignore storage failures and continue with server state.
+                     }
+                 },
+                 restoreDraft() {
+                     try {
+                         const form = this.getForm();
+
+                         if (!form) {
+                             return;
+                         }
+
+                         const raw = localStorage.getItem(this.storageKey);
+                         const draft = raw ? JSON.parse(raw) : {};
+                         const values = {
+                             ...(this.serverDraft || {}),
+                             ...(draft.values || {}),
+                         };
+
+                         this.applicationId = draft.applicationId || this.serverDraft?.id || null;
+                         this.currentStep = draft.currentStep || this.serverDraft?.current_step || 1;
+
+                         Object.entries(values).forEach(([name, value]) => {
+                             if (value === null || value === undefined) {
+                                 return;
+                             }
+
+                             const field = form.querySelectorAll(`[name="${this.escapeSelector(name)}"]`);
+
+                             if (!field.length) {
+                                 return;
+                             }
+
+                             field.forEach((element) => {
+                                 if (element.type === 'radio') {
+                                     element.checked = element.value === value;
+                                     return;
+                                 }
+
+                                 if (element.type === 'checkbox') {
+                                     element.checked = value === 'on' || value === '1' || value === true || element.value === value;
+                                     return;
+                                 }
+
+                                 element.value = value;
+                             });
+                         });
+
+                         this.postalAddress = values.postal_address || this.postalAddress;
+                         this.bornCountry = values.born || this.bornCountry;
+                         this.homeLanguage = values.language || this.homeLanguage;
+                         this.indigenous = values.indigenous || this.indigenous;
+                         this.disability = values.disability || this.disability;
+                         this.feePayer = values.fees || this.feePayer;
+                         this.updateApplicationUrl();
+                     } catch (error) {
+                         // Ignore invalid draft data and keep the form usable.
+                     }
+                 },
+                 clearDraft() {
+                     try {
+                         localStorage.removeItem(this.storageKey);
+                     } catch (error) {
+                         // Ignore storage failures.
+                     }
+                 },
+                 resetForm(showSuccess = false) {
+                     const form = this.getForm();
+
+                     if (form) {
+                         form.reset();
+                         form.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach((field) => {
+                             field.checked = false;
+                         });
+                         form.querySelectorAll('select').forEach((field) => {
+                             field.selectedIndex = 0;
+                         });
+                     }
+
+                     this.currentStep = 1;
+                     this.applicationId = null;
+                     this.submitted = showSuccess;
+                     this.errors = {};
+                     this.postalAddress = null;
+                     this.bornCountry = null;
+                     this.homeLanguage = null;
+                     this.indigenous = null;
+                     this.disability = null;
+                     this.feePayer = null;
+                     this.clearRenderedErrors();
+                     this.clearDraft();
+
+                     const url = new URL(window.location.href);
+                     url.searchParams.delete('application_id');
+                     window.history.replaceState({}, '', url);
+                     this.scrollToForm();
+                 },
+                 updateApplicationUrl() {
+                     if (!this.applicationId) {
+                         return;
+                     }
+
+                     const url = new URL(window.location.href);
+                     url.searchParams.set('application_id', this.applicationId);
+                     window.history.replaceState({}, '', url);
+                 },
+                 async saveCurrentStep() {
+                     if (this.loading) {
+                         return;
+                     }
+
+                     this.loading = true;
+                     this.errors = {};
+                     this.clearRenderedErrors();
+
+                     try {
+                         const form = this.getForm();
+
+                         if (!form) {
+                             throw new Error('Form not found.');
+                         }
+
+                         const formData = new FormData(form);
+                         formData.set('step', String(this.currentStep));
+
+                         if (this.applicationId) {
+                             formData.set('application_id', String(this.applicationId));
+                         }
+
+                         const response = await fetch(@json(route('enrolments.store')), {
+                             method: 'POST',
+                             headers: {
+                                 'X-CSRF-TOKEN': @json(csrf_token()),
+                                 'Accept': 'application/json',
+                                 'X-Requested-With': 'XMLHttpRequest',
+                             },
+                             body: formData,
+                         });
+
+                         let result = {};
+
+                         try {
+                             result = await response.json();
+                         } catch (error) {
+                             result = {};
+                         }
+
+                         if (!response.ok) {
+                             if (response.status === 422) {
+                                 this.errors = result.errors || {
+                                     general: [result.message || 'Please correct the errors.']
+                                 };
+                                 this.renderErrors(this.errors);
+                             } else {
+                                 this.errors = {
+                                     general: [result.message || 'Unable to submit your application. Please try again.']
+                                 };
+                             }
+
+                             this.loading = false;
+                             return;
+                         }
+
+                         this.applicationId = result.application_id ?? this.applicationId;
+                         this.updateApplicationUrl();
+
+                         if (this.currentStep < this.totalSteps) {
+                             this.currentStep += 1;
+                             this.saveDraftToStorage(formData);
+                             this.scrollToForm();
+                         } else {
+                             this.resetForm(true);
+                         }
+
+                         this.loading = false;
+                     } catch (error) {
+                         this.errors = {
+                             general: [error?.message || 'Unable to submit your application. Please try again.']
+                         };
+                         this.loading = false;
+                     }
+                 },
              };
          }
      </script>
