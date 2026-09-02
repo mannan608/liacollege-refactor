@@ -3,6 +3,7 @@
 use App\Http\Controllers\Student\AssignmentController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\EligibilityController;
+use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\QualificationController;
@@ -24,14 +25,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'landingPage'])->name('home');
 Route::get('/about', [FrontendController::class, 'aboutPage'])->name('about');
 Route::get('/students-information', [FrontendController::class, 'studentInformation'])->name('students-information');
-Route::get('/enrolment-form', [FrontendController::class, 'enrolmentForm'])->name('enrolment-form');
+
+Route::get('/enrolment-form', [EnrolmentController::class, 'create'])->name('enrolment-form');
+Route::post('/enrolment', [EnrolmentController::class, 'store'])->name('enrolments.store');
+
+
 Route::get('/contact', [FrontendController::class, 'contactPage'])->name('contact');
 Route::get('/qualifications', [QualificationController::class, 'courses'])
     ->name('qualifications');
 
-Route::get('/qualifications/{slug}', [QualificationController::class, 'courseDetails'])
-    ->name('qualifications.details');
-    Route::post('/apply', [QualificationController::class, 'apply'])->name('qualifications.apply');
+Route::get('/qualifications/{slug}', [QualificationController::class, 'courseDetails'])->name('qualifications.details');
+Route::post('/apply', [QualificationController::class, 'apply'])->name('qualifications.apply');
 
 
 // Route::get('/student-information', [FrontendController::class, 'studentInformation'])->name('student-information');
@@ -154,7 +158,9 @@ Route::view(
 )->name('first-aid.renew');
 
 
-Route::post('/eligibility/step/save',[EligibilityController::class, 'saveStep']
+Route::post(
+    '/eligibility/step/save',
+    [EligibilityController::class, 'saveStep']
 )->name('eligibility.step.save');
 
 // Route::get(
@@ -348,5 +354,5 @@ Route::prefix('student')
 
         Route::get('/courses/{course}/tasks/{assignment}/submit', [AssignmentController::class, 'submit'])->name('tasks.submit');
 
-        Route::post('/courses/{course}/tasks/{assignment}/submit',[AssignmentController::class, 'store'])->name('tasks.store');
+        Route::post('/courses/{course}/tasks/{assignment}/submit', [AssignmentController::class, 'store'])->name('tasks.store');
     });
