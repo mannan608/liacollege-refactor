@@ -82,6 +82,22 @@ Route::prefix('{role}')
 
         Route::resource('eligibility', EligibilityController::class);
 
+        /*
+        |----------------------------------------------------------------------
+        | Enrolment Applications (admin management)
+        |----------------------------------------------------------------------
+        |
+        | Only index and destroy are wired to the EnrolmentController.
+        | The full-submission store/update flow happens on the public wizard
+        | routes — admins manage status changes directly on the model.
+        |
+        */
+        Route::get('enrolments', [\App\Http\Controllers\EnrolmentController::class, 'index'])
+            ->name('enrolments.index');
+
+        Route::delete('enrolments/{enrolment}', [\App\Http\Controllers\EnrolmentController::class, 'destroy'])
+            ->name('enrolments.destroy');
+
         Route::resource('subscribers', SubscriberController::class);
         Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
