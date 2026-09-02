@@ -26,6 +26,7 @@ Route::get('/', [FrontendController::class, 'landingPage'])->name('home');
 Route::get('/about', [FrontendController::class, 'aboutPage'])->name('about');
 Route::get('/students-information', [FrontendController::class, 'studentInformation'])->name('students-information');
 
+// Route::get('/enrolment-form', [FrontendController::class, 'enrolmentForm'])->name('enrolment-form');
 Route::get('/enrolment-form', [EnrolmentController::class, 'create'])->name('enrolment-form');
 Route::post('/enrolment', [EnrolmentController::class, 'store'])->name('enrolments.store');
 

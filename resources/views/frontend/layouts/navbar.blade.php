@@ -70,7 +70,7 @@
                                         <a href="{{ route('qualifications.details', $course['slug']) }}"
                                             class="inline-flex items-center w-full p-2 hover:bg-gray-100 hover:text-heading rounded">
 
-                                            {{ $course['title'] }}
+                                           {{ $course['code'] }} {{ $course['title'] }}
                                         </a>
                                     </li>
                                 @empty

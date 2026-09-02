@@ -11,14 +11,10 @@ use Illuminate\Support\Str;
 
 class EnrolmentController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | FRONTEND
-    |--------------------------------------------------------------------------
-    */
 
     public function create(Request $request)
     {
+        
         $enrolment = null;
 
         if ($request->filled('application_id')) {
@@ -27,6 +23,7 @@ class EnrolmentController extends Controller
 
         return view('frontend.pages.register.register', compact('enrolment'));
     }
+  
 
     public function store(StoreEnrolmentRequest $request)
     {

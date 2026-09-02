@@ -381,32 +381,22 @@
 
         </section>
     </div>
-     @include('frontend.pages.common.cta')
-
-     <!-- HISTORY / QUALITY TRAINING -->
-<section class="relative overflow-hidden bg-white py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-            <div class="relative">
-                <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-brand-200 to-emerald-200 opacity-50 blur-xl"></div>
-                <div class="absolute inset-0 tranbrand-x-4 tranbrand-y-4 rounded-[1.5rem] bg-brand-100"></div>
-                <img src="{{ asset('frontend/images/banner/embark.png') }}" alt="Quality Training" class="relative rounded-[1.5rem] w-full h-auto object-cover shadow-2xl">
+   <!-- Qualifications Grid -->
+    <section class="py-24 md:py-32 bg-surface-container-lowest reveal-on-scroll">
+        <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="text-center  mb-16">
+                <h2 class="lg:text-6xl font-headline-lg md:text-5xl sm:text-4xl text-3xl font-bold text-on-surface mb-4">
+                    Explore Our Qualifications</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">Discover programs designed to equip
+                    you with the skills demanded by today's leading employers.</p>
             </div>
-            <div class="space-y-6">
-                <p class="text-sm font-semibold uppercase tracking-widest text-brand-600">Our Story</p>
-                <h2 class="text-3xl font-extrabold text-brand-900 sm:text-4xl">Quality Training Provider</h2>
-                <p class="text-lg leading-relaxed text-brand-600">
-                    For over a decade, Leadership Institute Australia has been dedicated to empowering individuals and organisations through high-quality vocational education and training. Our name reflects our commitment to developing strong leaders, skilled professionals, and capable community contributors.
-                </p>
-                <p class="text-lg leading-relaxed text-brand-600">
-                    Leadership Institute Australia is recognised as a trusted training provider, built on the expertise, passion, and continuous professional development of our training team. We are committed to maintaining the highest standards in education to ensure our students graduate with the knowledge, skills, and confidence needed to succeed.
-                </p>
+            <div class=" mt-8 md:mt-12">
+                <x-frontend.courses :courses="$courses->take(3)" />
             </div>
         </div>
-    </div>
-    </div>
-</section>
+    </section>
+
+
 
 </main>
 

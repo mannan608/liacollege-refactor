@@ -348,11 +348,13 @@ class FrontendController extends Controller
 
     public function studentInformation()
     {
-        return view('frontend.pages.students-information.index');
+          $courses = $this->getCourses();
+        return view('frontend.pages.students-information.index', compact('courses'));
     }
 
     public function enrolmentForm()
     {
+         $courses = $this->getCourses();
         return view('frontend.pages.register.register');
     }
 }
