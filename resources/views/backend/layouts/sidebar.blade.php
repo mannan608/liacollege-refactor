@@ -74,16 +74,32 @@
         :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
         'xl:justify-center' :
         'justify-start'">
-        <a href="{{ role_route('role.dashboard') }}" class="flex items-center gap-3">
-            <img x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                class="dark:hidden" src="{{ asset('logo.webp') }}" alt="Logo" width="80" height="auto" />
-            <img x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                class="hidden dark:block" src="{{ asset('logo.webp') }}" alt="Logo" width="80"
-                height="auto" /> 
-            <img x-show="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen"
-                src="{{asset('/logo.webp')}}" alt="Logo" width="32" height="auto" />
+        <a href="{{ role_route('role.dashboard') }}" class="flex h-16 items-center gap-3">
+    {{-- Expanded sidebar: light mode --}}
+    <img
+        x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
+        class="h-16 w-auto object-contain dark:hidden"
+        src="{{ asset('asc.png') }}"
+        alt="Logo"
+    />
 
-        </a>
+
+    {{-- Expanded sidebar: dark mode --}}
+    <img
+        x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
+        class="hidden h-8 w-auto object-contain dark:block"
+        src="{{ asset('nomi-logo.png') }}"
+        alt="Logo"
+    />
+
+    {{-- Collapsed sidebar --}}
+    <img
+        x-show="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen"
+        class="h-8 w-auto object-contain"
+        src="{{ asset('nomi-logo.png') }}"
+        alt="Logo"
+    />
+</a>
     </div>
 
     <!-- Navigation Menu -->

@@ -10,8 +10,8 @@
     <!-- User Button -->
     <button class="flex items-center text-gray-700 dark:text-gray-400" @click.prevent="toggleDropdown()" type="button">
         <span class="mr-3 overflow-hidden rounded-full h-11 w-11">
-            <img src="{{ auth()->user()?->avatar ? asset(auth()->user()->avatar) : asset('images/user/owner.png') }}"
-                alt="{{ auth()->user()?->name }}" class="w-full h-full object-cover" />
+            <img src="{{ auth()->user()?->avatar ? asset(auth()->user()->avatar) : asset('images/user/mannan.png') }}"
+                alt="{{ auth()->user()?->name }}" class="w-full h-full object-contain" />
         </span>
 
         <span class="block mr-1 font-medium text-theme-sm">{{ auth()->user()?->name ?? 'Admin' }}</span>
